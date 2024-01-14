@@ -3,6 +3,11 @@ version: "3.9"
 services:
   web-server:
     image: ${IMAGE_REGISTRY}/${IMAGE_WEB_SERVER}
+    build:
+      context: .
+      dockerfile: packaging/Dockerfile.web-server
+      args:
+        SEMVER_FULL: v0.0.0-alpha
     pull_policy: ${IMAGE_PULL_POLICY:-if_not_present}
     restart: always
     expose:
@@ -26,6 +31,11 @@ services:
 
   backend-server:
     image: ${IMAGE_REGISTRY}/${IMAGE_BACKEND_SERVER}
+    build:
+      context: .
+      dockerfile: packaging/Dockerfile.backend-server
+      args:
+        SEMVER_FULL: v0.0.0-alpha
     pull_policy: ${IMAGE_PULL_POLICY:-if_not_present}
     restart: always
     env_file:
@@ -49,6 +59,11 @@ services:
 
   room-server:
     image: ${IMAGE_REGISTRY}/${IMAGE_ROOM_SERVER}
+    build:
+      context: .
+      dockerfile: packaging/Dockerfile.room-server
+      args:
+        SEMVER_FULL: v0.0.0-alpha
     pull_policy: ${IMAGE_PULL_POLICY:-if_not_present}
     restart: always
     expose:
@@ -209,6 +224,11 @@ services:
   # init data
   init-db:
     image: ${IMAGE_REGISTRY}/${IMAGE_INIT_DB}
+    build:
+      context: ./init-db
+      dockerfile: Dockerfile
+      args:
+        SEMVER_FULL: v0.0.0-alpha
     pull_policy: ${IMAGE_PULL_POLICY:-if_not_present}
     environment:
       - TZ=${TIMEZONE}

@@ -31,11 +31,6 @@ import { Modal } from '../mobile/modal';
 import { ColorGroup } from './color_group';
 import { OptionSetting } from './enum';
 import styles from './style.module.less';
-import { getEnvVariables } from 'pc/utils/env';
-// @ts-ignore
-import { SubscribeGrade, SubscribeLabel } from 'enterprise/subscribe_system/subscribe_label/subscribe_label';
-// @ts-ignore
-import { SubscribeUsageTipType, triggerUsageAlert } from 'enterprise/billing/trigger_usage_alert';
 
 export interface IColorPickerPane {
   option: ISelectFieldOption;
@@ -48,40 +43,31 @@ export const ColorPickerPane: React.FC<React.PropsWithChildren<IColorPickerPane>
   const { option, showRenameInput = false, onChange, onClose } = props;
   const [newName, setNewName] = useState(option.name);
   const colors = useThemeColors();
-  const { IS_ENTERPRISE } = getEnvVariables();
 
   const renderMenu = (title: string, colorGroup: number[], showTag?: boolean, isBase?: boolean) => (
     <div
       className={cls(styles.menu, {
-        [styles.bg]: IS_ENTERPRISE && showTag,
-        [styles.common]: !IS_ENTERPRISE,
+        [styles.common]: true,
       })}
     >
-      {IS_ENTERPRISE && (
+      <div
+        className={cls(styles.menuTitle, {
+          [styles.base]: isBase,
+        })}
+      >
         <div
-          className={cls(styles.menuTitle, {
-            [styles.base]: isBase,
-          })}
+          style={{
+            fontWeight: showTag ? 'bold' : 'normal',
+            color: colorVars.firstLevelText,
+          }}
         >
-          <div
-            style={{
-              fontWeight: showTag ? 'bold' : 'normal',
-              color: colorVars.firstLevelText,
-            }}
-          >
-            {title}
-          </div>
-          {showTag && <SubscribeLabel grade={SubscribeGrade.Silver} />}
+          {title}
         </div>
-      )}
+      </div>
       <ColorGroup
         colorGroup={colorGroup}
         option={option}
         onChange={(type: OptionSetting, id: string, value: string | number) => {
-          if (title === t(Strings.option_configuration_advance_palette)) {
-            const result = triggerUsageAlert?.('rainbowLabel', { alwaysAlert: true }, SubscribeUsageTipType.Alert);
-            if (result) return;
-          }
           onChange?.(type, id, value);
           onClose();
         }}

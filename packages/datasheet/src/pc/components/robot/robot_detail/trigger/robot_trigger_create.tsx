@@ -153,17 +153,11 @@ export const RobotTriggerCreateForm = ({ robotId, triggerTypes, preTriggerId }: 
     setAutomationPanel,
   ]);
 
-  const { IS_ENTERPRISE } = getEnvVariables();
   if (!triggerTypes) {
     return null;
   }
 
   const handleCreateFormChange = (triggerTypeId: string) => {
-    if (triggerTypeId === timeScheduleTriggerType?.triggerTypeId && !IS_ENTERPRISE) {
-      window.open('https://aitable.ai/pricing/');
-      return;
-    }
-
     if (triggerTypeId) {
       createRobotTrigger(triggerTypeId);
     }
