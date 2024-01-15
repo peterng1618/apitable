@@ -96,7 +96,7 @@ public class DefaultSubscriptionFeature implements SubscriptionFeature {
 
     @Override
     public AdminNums getAdminNums() {
-        return new AdminNums(-1L);
+        return new AdminNums(10L);
     }
 
     @Override

@@ -105,7 +105,7 @@ export const SubAdmin: FC<React.PropsWithChildren<unknown>> = () => {
     return i18nStrings.join(' & ');
   };
   const addAdminBtnClick = () => {
-    const result = triggerUsageAlert?.('maxAdminNums', { usage: subAdminList.length, alwaysAlert: true }, SubscribeUsageTipType?.Alert);
+    const result = false;
     if (result) return;
     setModalType(ModalType.Add);
   };
