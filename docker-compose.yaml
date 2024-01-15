@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   web-server:
-    image: ${IMAGE_REGISTRY}/${IMAGE_WEB_SERVER}
+    #image: ${IMAGE_REGISTRY}/${IMAGE_WEB_SERVER}
     build:
       context: .
       dockerfile: packaging/Dockerfile.web-server
@@ -30,7 +30,7 @@ services:
       - apitable
 
   backend-server:
-    image: ${IMAGE_REGISTRY}/${IMAGE_BACKEND_SERVER}
+    #image: ${IMAGE_REGISTRY}/${IMAGE_BACKEND_SERVER}
     build:
       context: .
       dockerfile: packaging/Dockerfile.backend-server
@@ -58,7 +58,7 @@ services:
       retries: 60
 
   room-server:
-    image: ${IMAGE_REGISTRY}/${IMAGE_ROOM_SERVER}
+    #image: ${IMAGE_REGISTRY}/${IMAGE_ROOM_SERVER}
     build:
       context: .
       dockerfile: packaging/Dockerfile.room-server
@@ -223,7 +223,7 @@ services:
 
   # init data
   init-db:
-    image: ${IMAGE_REGISTRY}/${IMAGE_INIT_DB}
+    #image: ${IMAGE_REGISTRY}/${IMAGE_INIT_DB}
     build:
       context: ./init-db
       dockerfile: Dockerfile
