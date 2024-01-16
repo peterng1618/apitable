@@ -22,7 +22,7 @@ import { Integrations } from '@sentry/tracing';
 import { getEnvVariables, getInitializationData, getReleaseVersion } from 'pc/utils/env';
 
 Sentry.init({
-  enabled: true,
+  enabled: false,
   dsn: getEnvVariables().SENTRY_DSN,
   integrations: [
     new Integrations.BrowserTracing()!,

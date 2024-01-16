@@ -105,8 +105,6 @@ export const SubAdmin: FC<React.PropsWithChildren<unknown>> = () => {
     return i18nStrings.join(' & ');
   };
   const addAdminBtnClick = () => {
-    const result = false;
-    if (result) return;
     setModalType(ModalType.Add);
   };
   const editBtnClick = (record: ISubAdminList) => {
