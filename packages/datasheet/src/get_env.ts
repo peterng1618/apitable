@@ -230,5 +230,8 @@ export const getEnvVars = () => {
     ENABLE_WORKDOC_FIELD: process.env.ENABLE_WORKDOC_FIELD === 'true',
     AI_TRAINING_HELP_DOC_LINK: process.env.AI_TRAINING_HELP_DOC_LINK,
     AI_SETTING_HELP_DOC_LINK: process.env.AI_SETTING_HELP_DOC_LINK,
+    MAX_PANEL_COUNT: process.env.MAX_PANEL_COUNT,
+    MAX_TRIGGER_COUNT: process.env.MAX_TRIGGER_COUNT,
+    MAX_ACTION_COUNT: process.env.MAX_ACTION_COUNT,
   };
 };

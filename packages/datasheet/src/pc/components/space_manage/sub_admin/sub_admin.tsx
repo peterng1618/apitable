@@ -114,12 +114,7 @@ export const SubAdmin: FC<React.PropsWithChildren<unknown>> = () => {
     setEditOrReadSubMainInfo(record);
   };
   const delBtnClick = (info: ISubAdminList) => {
-    const title =
-      getSocialWecomUnitName?.({
-        name: info.memberName,
-        isModified: info.isMemberNameModified,
-        spaceInfo,
-      }) || info.memberName;
+    const title = info.memberName;
     const isTitleStr = typeof title === 'string';
     let content: string | JSX.Element;
     if (isTitleStr) {
@@ -151,12 +146,7 @@ export const SubAdmin: FC<React.PropsWithChildren<unknown>> = () => {
       dataIndex: 'memberName',
       key: 'memberName',
       render: (_value, record) => {
-        const title =
-          getSocialWecomUnitName?.({
-            name: record?.memberName,
-            isModified: record?.isMemberNameModified,
-            spaceInfo,
-          }) || record?.memberName;
+        const title = record?.memberName;
         return (
           <InfoCard
             title={title || record.memberName || t(Strings.unnamed)}

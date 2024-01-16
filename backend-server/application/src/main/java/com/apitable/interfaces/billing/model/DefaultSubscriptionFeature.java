@@ -198,7 +198,7 @@ public class DefaultSubscriptionFeature implements SubscriptionFeature {
 
     @Override
     public ControlFormBrandLogo getControlFormBrandLogo() {
-        return new ControlFormBrandLogo(false);
+        return new ControlFormBrandLogo(true);
     }
 
     @Override
