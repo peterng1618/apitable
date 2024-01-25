@@ -26,7 +26,7 @@ import { getMirrorSnapshot } from 'modules/database/store/selectors/resource/mir
 import { ResourceType } from 'types';
 import { getNewId, getUniqName, IDPrefix } from 'utils';
 
-const  MAX_PANEL_COUNT = 5;
+const  MAX_WIDGET_PANEL_COUNT = 5;
 
 export interface IAddWidgetPanel {
   cmd: CollaCommandName.AddWidgetPanel;
@@ -46,7 +46,7 @@ export const addWidgetPanel: ICollaCommandDef<IAddWidgetPanel> = {
 
     const panelCount = widgetPanels.length;
 
-    if (panelCount >= MAX_PANEL_COUNT) {
+    if (panelCount >= MAX_WIDGET_PANEL_COUNT) {
       return null;
     }
 

@@ -31,6 +31,12 @@ import { Modal } from '../mobile/modal';
 import { ColorGroup } from './color_group';
 import { OptionSetting } from './enum';
 import styles from './style.module.less';
+import { getEnvVariables } from 'pc/utils/env';
+// @ts-ignore
+import { SubscribeGrade, SubscribeLabel } from 'enterprise/subscribe_system/subscribe_label/subscribe_label';
+// @ts-ignore
+import { SubscribeUsageTipType, triggerUsageAlert } from 'enterprise/billing/trigger_usage_alert';
+
 
 export interface IColorPickerPane {
   option: ISelectFieldOption;
@@ -43,6 +49,7 @@ export const ColorPickerPane: React.FC<React.PropsWithChildren<IColorPickerPane>
   const { option, showRenameInput = false, onChange, onClose } = props;
   const [newName, setNewName] = useState(option.name);
   const colors = useThemeColors();
+  const { IS_ENTERPRISE } = getEnvVariables();
 
   const renderMenu = (title: string, colorGroup: number[], showTag?: boolean, isBase?: boolean) => (
     <div
@@ -50,20 +57,6 @@ export const ColorPickerPane: React.FC<React.PropsWithChildren<IColorPickerPane>
         [styles.common]: true,
       })}
     >
-      <div
-        className={cls(styles.menuTitle, {
-          [styles.base]: isBase,
-        })}
-      >
-        <div
-          style={{
-            fontWeight: showTag ? 'bold' : 'normal',
-            color: colorVars.firstLevelText,
-          }}
-        >
-          {title}
-        </div>
-      </div>
       <ColorGroup
         colorGroup={colorGroup}
         option={option}

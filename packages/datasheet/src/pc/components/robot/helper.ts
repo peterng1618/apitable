@@ -96,7 +96,11 @@ export const getNodeOutputSchemaList = (props: {
 
   const map = new Map<string, number[]>();
 
-  triggers.forEach((trigger, index) => {
+  const timeScheduleTriggerType = triggerTypes.find((item) => item.endpoint === 'scheduled_time_arrive');
+
+  const filteredTriggers = triggers.filter((trigger) => trigger.triggerTypeId !== timeScheduleTriggerType?.triggerTypeId);
+
+  filteredTriggers.forEach((trigger, index) => {
     const resourceId = triggerDataSheetMap[trigger.triggerId] as unknown as string;
     if (resourceId && checkIfDatasheetResourceValid(dataSheetMap, resourceId)) {
       const itemMap = map.get(resourceId) ?? [];
@@ -104,7 +108,7 @@ export const getNodeOutputSchemaList = (props: {
     }
   });
 
-  triggers.forEach((trigger, index) => {
+  filteredTriggers.forEach((trigger, index) => {
     const resourceId = triggerDataSheetMap[trigger.triggerId] as unknown as string;
     const triggerType = trigger && triggerTypes.find((triggerType) => triggerType.triggerTypeId === trigger?.triggerTypeId);
     if (triggerType) {

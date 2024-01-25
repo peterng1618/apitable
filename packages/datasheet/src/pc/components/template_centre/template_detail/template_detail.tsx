@@ -48,6 +48,7 @@ const _SplitPane: any = SplitPane;
 
 export const TemplateDetail: FC<React.PropsWithChildren<unknown>> = () => {
   const colors = useThemeColors();
+  const { IS_ENTERPRISE } = getEnvVariables();
   const router = useRouter();
   const { sideBarVisible: _sideBarVisible } = useSideBarVisible();
   const pageParams = useAppSelector((state: IReduxState) => state.pageParams);

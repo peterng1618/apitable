@@ -16,6 +16,7 @@ export const useMountShare = (shareInfo: Required<IShareInfo> | undefined) => {
   const { data: spaceList = [], loading: spaceListLoading, run: getSpaceList } = useRequest(getSpaceListReq, { manual: true });
   const { getLoginStatusReq } = useUserRequest();
   const { run: getLoginStatus, loading } = useRequest(getLoginStatusReq, { manual: true });
+  const { IS_ENTERPRISE } = getEnvVariables();
 
   const dispatch = useAppDispatch();
   /**

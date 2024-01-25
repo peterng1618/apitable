@@ -153,6 +153,7 @@ export const RobotTriggerCreateForm = ({ robotId, triggerTypes, preTriggerId }: 
     setAutomationPanel,
   ]);
 
+  const { IS_ENTERPRISE } = getEnvVariables();
   if (!triggerTypes) {
     return null;
   }

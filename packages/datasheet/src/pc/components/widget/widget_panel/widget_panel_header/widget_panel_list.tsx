@@ -37,7 +37,7 @@ import { WrapperTooltip } from './wrapper_tooltip';
 import styles from './style.module.less';
 import { getEnvVariables } from 'pc/utils/env';
 
-const { MAX_PANEL_COUNT } = getEnvVariables();
+const { MAX_WIDGET_PANEL_COUNT } = getEnvVariables();
 
 export const WidgetPanelList: FC<React.PropsWithChildren<{ onClickItem?: (panelIndex: number) => void }>> = ({ onClickItem }) => {
   const { screenIsAtMost } = useResponsive();
@@ -83,7 +83,7 @@ export const WidgetPanelList: FC<React.PropsWithChildren<{ onClickItem?: (panelI
     onKeyPressEnter();
   });
 
-  const panelCountOverLimit = widgetPanels.length >= MAX_PANEL_COUNT;
+  const panelCountOverLimit = widgetPanels.length >= MAX_WIDGET_PANEL_COUNT;
 
   const switchActivePanel = (panelId: string) => {
     dispatch(StoreActions.switchActivePanel(panelId, resourceId, resourceType));
@@ -170,7 +170,7 @@ export const WidgetPanelList: FC<React.PropsWithChildren<{ onClickItem?: (panelI
   return (
     <div className={classNames(styles.widgetListWrapper, isMobile && styles.widgetListWrapperMobile)}>
       <h2>
-        {t(Strings.widget_panel)}（{widgetPanels.length}/{MAX_PANEL_COUNT}）
+        {t(Strings.widget_panel)}({widgetPanels.length}/{MAX_WIDGET_PANEL_COUNT})
         <Tooltip title={t(Strings.click_to_view_instructions)} trigger={'hover'}>
           <a href={t(Strings.intro_widget)} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block' }}>
             <QuestionCircleOutlined color={colors.thirdLevelText} />
