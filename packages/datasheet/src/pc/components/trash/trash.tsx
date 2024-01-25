@@ -114,10 +114,6 @@ const Trash: FC<React.PropsWithChildren<unknown>> = () => {
     if (recoverLoading) {
       return;
     }
-    const result = triggerUsageAlert?.('maxSheetNums', { usage: spaceInfo!.sheetNums + 1, alwaysAlert: true }, SubscribeUsageTipType?.Alert);
-    if (result) {
-      return;
-    }
 
     if (formIdReg.test(`/${nodeId}`)) {
       const result = triggerUsageAlert?.(

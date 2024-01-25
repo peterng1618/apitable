@@ -16,7 +16,6 @@ export const useMountShare = (shareInfo: Required<IShareInfo> | undefined) => {
   const { data: spaceList = [], loading: spaceListLoading, run: getSpaceList } = useRequest(getSpaceListReq, { manual: true });
   const { getLoginStatusReq } = useUserRequest();
   const { run: getLoginStatus, loading } = useRequest(getLoginStatusReq, { manual: true });
-  const { IS_ENTERPRISE } = getEnvVariables();
 
   const dispatch = useAppDispatch();
   /**
@@ -34,7 +33,7 @@ export const useMountShare = (shareInfo: Required<IShareInfo> | undefined) => {
       return;
     }
     dispatch(StoreActions.addNodeToMap(Selectors.flatNodeTree([...shareNodeTree.children, shareNodeTree])));
-    IS_ENTERPRISE && dispatch(StoreActions.fetchMarketplaceApps(shareSpaceInfo.spaceId as string));
+    dispatch(StoreActions.fetchMarketplaceApps(shareSpaceInfo.spaceId as string));
     dispatch(
       StoreActions.setShareInfo({
         spaceId: shareSpaceInfo.spaceId,

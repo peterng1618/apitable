@@ -48,7 +48,6 @@ const _SplitPane: any = SplitPane;
 
 export const TemplateDetail: FC<React.PropsWithChildren<unknown>> = () => {
   const colors = useThemeColors();
-  const { IS_ENTERPRISE } = getEnvVariables();
   const router = useRouter();
   const { sideBarVisible: _sideBarVisible } = useSideBarVisible();
   const pageParams = useAppSelector((state: IReduxState) => state.pageParams);
@@ -86,7 +85,7 @@ export const TemplateDetail: FC<React.PropsWithChildren<unknown>> = () => {
     const isPrivate = categoryId === 'tpcprivate';
     getTemplateDirectory(templateId, isPrivate, categoryId);
     // Use the spaceId of the official template space in the configuration table under the official template to query
-    if (templateId && categoryId !== 'tpcprivate' && IS_ENTERPRISE) {
+    if (templateId && categoryId !== 'tpcprivate') {
       dispatch(StoreActions.fetchMarketplaceApps(getEnvVariables().TEMPLATE_SPACE_ID!));
     }
   }, [templateId, getTemplateDirectory, categoryId, dispatch, spaceId]);

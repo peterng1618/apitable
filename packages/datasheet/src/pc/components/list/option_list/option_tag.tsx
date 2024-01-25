@@ -35,12 +35,25 @@ interface IOptionTagProps {
   ellipsis?: boolean;
 }
 
+// Function to calculate brightness of a color. To be tested
+//function brightness(color: string): number {
+//  const match = color.match(/rgba\((\d+), (\d+), (\d+), (\d+)\)/);
+//  if (match) {
+//    const r = Number(match[1]);
+//    const g = Number(match[2]);
+//    const b = Number(match[3]);
+//    return Math.sqrt(0.299 * r * r + 0.587 * g * g + 0.114 * b * b);
+//  }
+//  return 0;
+//}
+
 export const OptionTag: React.FC<React.PropsWithChildren<IOptionTagProps>> = (props) => {
   const colors = useThemeColors();
   const cacheTheme = useAppSelector(Selectors.getTheme);
   const { option, style = {}, className, ellipsis = true } = props;
   // Dark colors with a transparency of 0.8 or 1 should be replaced with white fonts
   const optionNameColor = cacheTheme === ThemeName.Dark ? colors.staticWhite0 : option.color >= COLOR_INDEX_THRESHOLD ? colors.defaultBg : 'inherit';
+//  const optionNameColor = cacheTheme === ThemeName.Dark ? colors.staticWhite0 : brightness(option.color) < COLOR_INDEX_THRESHOLD ? colors.defaultBg : 'inherit';
 
   return (
     <div className={classnames(styles.itemContainer, className)} style={{ background: setColor(option.color, cacheTheme), ...style }}>

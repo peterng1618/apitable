@@ -77,6 +77,7 @@ export function hexToHSL(hex: string, alpha: number) {
 }
 
 // Single-multiple choice property.option.color exceeds the threshold value, the font color is white
+// This doesn't seem to be working. The font color is always white, even when the chip color is bright. Needs investigation.
 export const COLOR_INDEX_THRESHOLD = 30;
 
 // rgba -> hex

@@ -148,7 +148,6 @@ export const useNotificationCreate = ({ spaceId }: { fromUserId: string; spaceId
       if (success) {
         dispatch(StoreActions.getSubAdminList(1));
         Message.success({ content: t(Strings.add_sub_admin_success) });
-        triggerUsageAlert('maxAdminNums', { usage: spaceInfo!.adminNums + memberIds.length });
       } else {
         Message.error({ content: message });
       }

@@ -459,7 +459,7 @@ dataenv-logs:
 .PHONY: up
 up: _dataenv-volumes ## startup the application
 	@echo "Please execute 'make pull' first to download & upgrade all images to your machine."
-	docker compose up -d
+	docker compose up -d --build
 
 .PHONY: down
 down: ## shutdown the application

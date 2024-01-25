@@ -90,12 +90,6 @@ export const AddAdminModal: FC<React.PropsWithChildren<IModalProps>> = ({ cancel
   const modalConfirm = () => {
     if (source === ModalType.Add) {
       const memberIds = selectedMembers.map((item) => (item as IMember).memberId);
-      const result = triggerUsageAlert(
-        'maxAdminNums',
-        { usage: memberIds.length + existSubAdminNum, alwaysAlert: true },
-        SubscribeUsageTipType.Alert,
-      );
-      if (result) return;
       setSubmitBtnLoading(true);
       addSubAdminAndNotice(memberIds, resourceCodes, handCancel);
       return;
@@ -142,11 +136,7 @@ export const AddAdminModal: FC<React.PropsWithChildren<IModalProps>> = ({ cancel
   };
   const title =
     source !== ModalType.Add && editOrReadSubMainInfo
-      ? getSocialWecomUnitName?.({
-        name: editOrReadSubMainInfo?.memberName,
-        isModified: editOrReadSubMainInfo?.isMemberNameModified,
-        spaceInfo,
-      }) || editOrReadSubMainInfo?.memberName
+      ? editOrReadSubMainInfo?.memberName
       : '';
   return (
     <>
@@ -184,12 +174,7 @@ export const AddAdminModal: FC<React.PropsWithChildren<IModalProps>> = ({ cancel
               {selectedMembers.length > 0 &&
                 selectedMembers.map((item) => {
                   const userInfo = generateUserInfo(item);
-                  const title =
-                    getSocialWecomUnitName({
-                      name: (item as IMember)?.originName,
-                      isModified: (item as IMember)?.isMemberNameModified,
-                      spaceInfo,
-                    }) || (item as IMember)?.originName;
+                  const title = (item as IMember)?.originName;
                   return (
                     <UnitTag
                       key={item.unitId}

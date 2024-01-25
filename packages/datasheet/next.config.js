@@ -26,9 +26,9 @@ const getWebpackConfig = require('./webpack.config');
 const { withSentryConfig } = require('@sentry/nextjs');
 
 const sentryWebpackPluginOptions = {
-  disableServerWebpackPlugin: false,
-  widenClientFileUpload: true,
-  disableClientWebpackPlugin: false,
+  disableServerWebpackPlugin: true,
+  widenClientFileUpload: false,
+  disableClientWebpackPlugin: true,
   org: process.env.SENTRY_ORG ??  'sentry',
   project: process.env.SENTRY_PROJECT  ?? 'web-server',
   url: process.env.SENTRY_URL  ??  'https://sentry.vika.ltd',
