@@ -223,17 +223,17 @@ public class DefaultSubscriptionFeature implements SubscriptionFeature {
 
     @Override
     public RemainTimeMachineDays getRemainTimeMachineDays() {
-        return new RemainTimeMachineDays(-1L);
+        return new RemainTimeMachineDays(1095L);
     }
 
     @Override
     public RemainRecordActivityDays getRemainRecordActivityDays() {
-        return new RemainRecordActivityDays(-1L);
+        return new RemainRecordActivityDays(1095L);
     }
 
     @Override
     public AuditQueryDays getAuditQueryDays() {
-        return new AuditQueryDays(-1L);
+        return new AuditQueryDays(1095L);
     }
 
     @Override
